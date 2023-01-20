@@ -4,9 +4,9 @@ function Login() {
         <form>
         <h1>Inicio de Sesion</h1>
             <label>Usuario</label>
-            <input type={text} className="user"></input>
+            <input type="text" className="user"></input>
             <label>Contraseña</label>
-            <input type={password}></input>
+            <input type="password"></input>
             <button>Login</button>
         </form>
         </>
