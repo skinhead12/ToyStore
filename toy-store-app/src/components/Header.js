@@ -10,7 +10,7 @@ function Header(){
         <>
         <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Tomate's toy store</Navbar.Brand>
+          <Navbar.Brand href="#home">skinhead's toy store</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#onlineshop">Online Shop</Nav.Link>

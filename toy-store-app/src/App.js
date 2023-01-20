@@ -5,6 +5,7 @@ import Home from './views/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
+import UpdateForm from './views/UpdateForm';
 
 
 function App() {
@@ -13,7 +14,9 @@ function App() {
       <div>
         <Header/>
         <Sidebar/>
+        <br></br>
         <Home/>
+        <UpdateForm/>
       </div>
       <Footer/>
     </>

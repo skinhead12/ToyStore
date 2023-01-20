@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from "react";
-import Container from 'react-bootstrap/Container';
 import Table from "react-bootstrap/Table";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Container from "react-bootstrap/Container";
 
 const CRUD = () => {
 
     const [show, setShow] = useState(false);
+    const [showDiv, setShowDiv] = useState(false);
+    const [showCheckbox, setShowCheckbox] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   
+    const [nameProd, setNameProd] = useState('');
+    const [description, setDescription] = useState('');
+    const [company, setCompany] = useState('');
+    const [price, setPrice] = useState('');
+
+   
+
 
   const prodData = [
     {
@@ -49,29 +58,37 @@ const CRUD = () => {
     alert(id);
   }
 
-  const handleUpdate = () => {
-
-  }
+ 
 
   return (
-    <>
-    <h1>Product List </h1>
+    <>   
+     <h1>Product List </h1>
        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <Button variant="primary" >New</Button>
+                <Button variant="primary" onClick={() => setShowDiv(!showDiv)}>New</Button>
                 <Button variant="warning" >Edit</Button>
-                <Button variant="danger" >Delete</Button> 
-            </div>     
-       <Container>
-      <Row>
+                <Button variant="danger" onClick={() => setShowCheckbox(!showCheckbox)}>Delete</Button>
+            </div>  
+            { showDiv && <Container>
+    <Row>
         <Col>
-        <input type="text" className="form-control" placeholder="Product name"/>
+        <input type="text" className="form-control" placeholder="Product name" value={nameProd} onChange={(e) => setNameProd(e.target.value)}/>
         </Col>
         <Col>
-        <input type="text" className="form-control" placeholder=""/>
+        <input type="text" className="form-control" placeholder="descripction" value={description} onChange={(e) => setDescription(e.target.value)}/>
         </Col>
-        <Col>3 of 3</Col>
+        <Col>
+        <input type="text" className="form-control" placeholder="company" value={company} onChange={(e) => setCompany(e.target.value)}/>
+        </Col>
+        <Col>
+        <input type="number" className="form-control" placeholder="price" value={price} onChange={(e) => setPrice(e.target.value)}/>
+        </Col>
+        <Col>
+        <button className="btn btn-primary">Submit</button>
+        </Col>
       </Row>
     </Container>
+            }
+    
     <br></br>
       <Table striped bordered hover>
         <thead>
@@ -94,32 +111,17 @@ const CRUD = () => {
                     <td>{item.description}</td>
                     <td>{item.company}</td>
                     <td>{item.price}</td>
-                    <td colSpan={2}>
+                    <td colSpan={1}>
                         <button className="btn btn-primary" onClick={() => handleEdit(item.idProd)}>Edit</button> &nbsp;
-                        <button className="btn btn-danger" onClick={() => handleDelete(item.idProd)}>Delete</button>
                     </td>
-
+                    { showCheckbox && <td colSpan={1}> <input type="checkbox" value={item.idProd} onClick={() => handleDelete(item.idProd)}></input></td> }
                   </tr>
                 );
               })
             : "Loading..."}
         </tbody>
       </Table>
-      <Modal show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Update Product</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleUpdate}>
-            Save
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      
     </>
   );
 };
