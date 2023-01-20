@@ -1,20 +1,17 @@
 import React from 'react';
-import '../styles/Home.css';
+import CRUD from './CRUD';
 
 function Home() {
     return ( 
-    
-        <div className="container-products">
-            <div className="btn-container">
-            <h1>Title </h1>
-                <button>New</button>
-                <button>Edit</button>
-                <button>Delete</button> 
-            </div>
+    <>
+    <div className="container-products">
+          
             <div className="list-container">
-
+            <CRUD/>
             </div>        
         </div>
+    </>
+        
      );
 }
 
